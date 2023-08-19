@@ -1,20 +1,14 @@
-<html>
-<body>
-    <div>顶部分类:
-        {% for cate in navs %}
-            <a href="{% url 'category-list' cate.id %}">{{ cate.name }}</a>
-        {% endfor %}
-    </div>
-    <hr/>
-
+{% extends "./base.html" %}
+{% block title %}
     {% if tag %}
-        标签页：{{ tag.name }}
+        标签列表页：{{ tag.name }}
+    {% elif category %}
+        分类列表页：{{ category.name }}
+    {% else %}
+        首页
     {% endif %}
-
-    {% if category %}
-        分类页：{{ category.name }}
-    {% endif %}
-
+{% endblock %}
+{% block main %}
     <ul>
     {% for post in post_list %}
         <li>
@@ -27,18 +21,13 @@
         </li>
     {% endfor %}
     </ul>
-
-    <hr/>
-    <div>底部分类:
-        {% for cate in categories %}
-            <a href="{% url 'category-list' cate.id %}">{{ cate.name }}</a>
-        {% endfor %}
-    </div>
-    <div>侧边栏展示：
-        {% for sidebar in sidebars %}
-            <h4>{{ sidebar.title }}</h4>
-            {{ sidebar.content }}
-        {% endfor %}
-    </div>
-</body>
-</html>
+    {% if page_obj %}
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+        Page {{ page_obj.number }} of {{ paginator.num_page }}.
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}

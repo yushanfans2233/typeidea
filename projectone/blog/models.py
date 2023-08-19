@@ -102,6 +102,7 @@ class Post(models.Model):
     @classmethod
     def latest_posts(cls):
         queryset = cls.objects.filter(status=cls.STATUS_NORMAL)
+        return queryset
 
     class Meta:
         verbose_name = verbose_name_plural = '文章'
