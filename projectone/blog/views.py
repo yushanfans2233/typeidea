@@ -106,7 +106,7 @@ class PostDetailView(CommonViewMixin, DetailView):
     def get(self, request, *args, **kwargs):
         response = super().get(request, *args, **kwargs)
         self.handle_visited()
-        response
+        return response
 
     def handle_visited(self):
         increase_pv = False
