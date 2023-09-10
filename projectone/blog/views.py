@@ -122,8 +122,9 @@ class PostDetailView(CommonViewMixin, DetailView):
             increase_uv = True
             cache.set(uv_key, 1, 24 * 60 * 60)  # 24小时有效
 
+        if increase_uv and increase_uv:
+            Post.objects.filter(pk=self.object.id).update(pv=F('pv') + 1, uv=F('uv') + 1)
         elif increase_pv:
             Post.objects.filter(pk=self.object.id).update(pv=F('pv') + 1)
         elif increase_uv:
             Post.objects.filter(pk=self.object.id).update(uv=F('uv') + 1)
-
