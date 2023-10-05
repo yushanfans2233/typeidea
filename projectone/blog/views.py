@@ -1,7 +1,7 @@
 from datetime import date
 
 from django.db.models import Q, F
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.core.cache import cache
 

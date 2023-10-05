@@ -29,8 +29,6 @@ from projectone.custom_site import custom_site
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 
-# TODO Simplified URL routing syntax
-# https://docs.djangoproject.com/zh-hans/2.0/releases/2.0/#simplified-url-routing-syntax
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     path('category/<int:category_id>/', CategoryView.as_view(), name='category-list'),
